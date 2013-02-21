@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 janv. 2013 10:50:46 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.boucheriebenz.eboucherie.recherche.model.Recette" table="RECETTE">
+        <id name="idRecette" type="java.lang.Integer">
+            <column name="IDRECETTE" />
+            <generator class="assigned" />
+        </id>
+        <property name="libelle" type="java.lang.String">
+            <column name="LIBELLE" />
+        </property>
+        <property name="duree" type="java.util.Date">
+            <column name="DUREE" />
+        </property>
+        <property name="difficulte" type="java.lang.Integer">
+            <column name="DIFFICULTE" />
+        </property>
+        <property name="ingredients" type="java.lang.String">
+            <column name="INGREDIENTS" />
+        </property>
+        <property name="etapes" type="java.lang.String">
+            <column name="ETAPES" />
+        </property>
+        <property name="article" type="int">
+            <column name="ARTICLE" />
+        </property>
+    </class>
+</hibernate-mapping>

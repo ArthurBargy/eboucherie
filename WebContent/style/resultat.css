@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+.resultsContent .blockColProd {
+    border: 1px solid #CFCCC9;
+    float: left;
+    height: 230px;
+    overflow: hidden;
+    width: 167px;
+}
+
+.blockColProd {
+    border-bottom: 1px solid #CFCCC9;
+    border-right: 1px solid #CFCCC9;
+    float: left;
+    padding-bottom: 0;
+    width: 479px;
+}
+
+.nbOfArticles {
+    border-left: 1px solid #CFCCC9;
+    border-right: 1px solid #CFCCC9;
+    border-top: 1px solid #CFCCC9;
+    color: #244996;
+    display: inline;
+    float: left;
+    font-size: 1em;
+    height: 23px;
+    padding: 10px 20px 0;
+    text-align: right;
+    width: 188px;
+    margin-top: 2px;
+   
+}
+.sort{
+	border-bottom: 1px solid #CFCCC9;
+	width:507px;
+}

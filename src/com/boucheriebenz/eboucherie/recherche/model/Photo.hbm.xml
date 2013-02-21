@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 janv. 2013 10:50:46 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.boucheriebenz.eboucherie.recherche.model.Photo" table="Photo">
+        <id name="idPhoto" type="java.lang.Integer">
+            <column name="id_photo" />
+            <generator class="assigned" />
+        </id>
+        <property name="libelle" type="java.lang.String">
+            <column name="libelle" />
+        </property>
+        <property name="lien" type="java.lang.String">
+            <column name="lien" />
+        </property>
+    </class>
+</hibernate-mapping>

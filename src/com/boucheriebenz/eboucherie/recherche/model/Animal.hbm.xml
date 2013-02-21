@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 janv. 2013 10:50:46 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.boucheriebenz.eboucherie.recherche.model.Animal" table="ANIMAL">
+        <id name="idAnimal" type="java.lang.Integer">
+            <column name="IDANIMAL" />
+            <generator class="assigned" />
+        </id>
+        <property name="age" type="java.lang.Integer">
+            <column name="AGE" />
+        </property>
+        <property name="poids" type="java.lang.Double">
+            <column name="POIDS" />
+        </property>
+        <property name="sexe" type="java.lang.String">
+            <column name="SEXE" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" />
+        </property>
+        <property name="race" type="java.lang.String">
+            <column name="RACE" />
+        </property>
+        <property name="numTrac" type="int">
+            <column name="NUMTRAC" />
+        </property>
+        <property name="prixMin" type="double">
+            <column name="PRIXMIN" />
+        </property>
+        <property name="prixMax" type="java.lang.Double">
+            <column name="PRIXMAX" />
+        </property>
+    </class>
+</hibernate-mapping>

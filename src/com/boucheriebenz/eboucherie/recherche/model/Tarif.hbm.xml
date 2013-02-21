@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 janv. 2013 10:50:46 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.boucheriebenz.eboucherie.recherche.model.Tarif" table="Tarif">
+        <id name="idTarif" type="java.lang.Integer">
+            <column name="id_tarif	" />
+            <generator class="assigned" />
+        </id>
+        <property name="tarif1" type="double">
+            <column name="tarif1" />
+        </property>
+        <property name="tarif2" type="double">
+            <column name="tarif2" />
+        </property>
+        <property name="tarif3" type="double">
+            <column name="tarif3" />
+        </property>
+        <property name="tarif4" type="double">
+            <column name="tarif4" />
+        </property>
+    </class>
+</hibernate-mapping>

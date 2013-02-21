@@ -1,0 +1,28 @@
+table {
+    width: 50%;
+}
+
+p {
+    width: 50%;
+}
+
+table.no-zebra tbody tr:nth-child(even) td,
+table.no-zebra tbody tr.even td {
+  background: transparent;
+}
+
+textarea {
+    height: 50px;
+    width: 300px;
+}
+
+thead th {
+    background: #900606;
+    color: #FFFFFF;
+}
+
+tbody tr:nth-child(even) td, tbody tr.even td {background:#E2E2E2;}
+
+.chosen {
+    width: 300px;
+}

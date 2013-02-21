@@ -1,0 +1,82 @@
+@CHARSET "ISO-8859-1";
+
+
+.titrePosition{ 
+	    
+	    text-align : center; 		
+ 		font-size: 28px;
+ 		font-family: Comic Sans MS ;
+		border-width:2px; 
+ 		border-style:solid; 
+ 		border-color:black;
+ 		color: white;
+ 		background-color: #900606 ;
+ 		box-shadow: 6px 6px 0px black;
+		border-radius: 10px;
+}
+
+
+.headerPosition{ 
+	font-size: 23px;
+ 	font-family: Comic Sans MS ;
+ 	font-weight : bold;
+	
+	color : Dark;
+		
+}
+
+
+.headerPosition1{ 
+	font-size: 23px;
+ 	font-family: Comic Sans MS ;
+ 	font-weight : bold;
+	
+	
+	color : Dark;
+		
+} 		
+
+
+.colorLog{ 
+	background:  #900606 ; 
+ 		color: white;
+}
+
+
+
+
+.tableSize { 
+	border-width:2px; 
+ 	border-style:solid; 
+ 	border-color:black;
+	
+	box-shadow: 6px 6px 0px black;
+	border-radius: 10px;
+}
+
+.subPosition{ 
+		border-width:1px; 
+ 		border-style:solid; 
+ 		border-color: #900606;
+ 		background-color: #900606;
+ 		color : white;
+		
+ 	
+ 		
+ 		border-radius: 10px;
+ 		box-shadow: 2px 2px 0px #888;
+}
+
+.subPosition1{ 
+		border-width:1px; 
+ 		border-style:solid; 
+ 		border-color:black;
+		
+ 		
+ 		border-radius: 10px;
+ 		background:  #900606 ; 
+ 		color: white;
+}
+
+
+}

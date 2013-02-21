@@ -1,0 +1,78 @@
+@CHARSET "ISO-8859-1";
+a.pagination{
+	text-decoration : none;
+	
+	color: black;
+	position: relative;
+	left:40%;
+}
+a.pagination:hover{
+	text-decoration : underline;
+	
+}
+note.pageCourante{
+	color: #900606;
+	position: relative;
+	left:40%;
+	font-weight: bold;
+}
+a.boutonPanier{
+	position: relative;
+		
+}
+a.boutonListe{
+	position: relative;
+	left: 2%;	
+	text-decoration: none;
+	margin-right: 1px;
+}
+div.contenuCentral td.caseAnimal a.texte{
+	text-decoration: none;
+	color: black;	
+	font-weight: bold;
+	font-family: arial;
+	font-size: 12px;
+	padding-top: 3px;
+}
+div.contenuCentral table.tabAnimaux{
+	border-collapse: collapse;
+	
+}
+div.contenuCentral td.caseAnimal{
+	border: solid 1px #c3c1c2;
+	padding: 7px;	
+}
+div.contenuCentral td.caseAnimal:hover{
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 10px #888;	
+}
+div.contenuCentral td.caseAnimal p.banniere{
+	background: #f7e188;
+	margin-top: 5px;
+	margin-bottom : 0px;
+	padding-top: 4px;
+	padding-bottom: 0px;
+}
+div.contenuCentral p.prix{
+	position: relative;
+	text-align: right;
+	margin-top: 5px;
+	margin-bottom : 0px;
+	color: #595b59;
+	font-weight: normal;
+	font-size: 16px;
+	font-style: normal;
+	font-family: arial;	
+}
+div.contenuCentral{
+	position: absolute;
+	top: 200px;
+	width: 526px;
+}
+div.contenuCentral p.tri{
+	text-align: right;
+	font-size: 10px;
+	font-family: arial;
+	margin-bottom: 15px;
+}
