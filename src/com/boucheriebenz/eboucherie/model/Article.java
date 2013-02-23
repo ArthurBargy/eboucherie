@@ -2,13 +2,17 @@ package com.boucheriebenz.eboucherie.model;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Article {
 
     private Integer id;
+    @NotEmpty
     private String libelle;
+    @NotEmpty
     private String type;
+    @NotEmpty
     private String race;
     private String description;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
