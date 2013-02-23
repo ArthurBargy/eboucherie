@@ -33,7 +33,8 @@
         <a href="articles">G&eacute;rer Articles</a> -
         <a href="tarifs">G&eacute;rer Tarifs</a> -
         <a href="preparations">G&eacute;rer Preparations</a> -
-        <a href="tvas">G&eacute;rer TVAs</a>
+        <a href="tvas">G&eacute;rer TVAs</a> -
+        <a href="textes">G&eacute;rer Zones de Texte</a>
         <br><br>
 		<div id="slides" >
 			<div class="slides_container">
