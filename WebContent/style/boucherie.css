@@ -26,3 +26,7 @@ tbody tr:nth-child(even) td, tbody tr.even td {background:#E2E2E2;}
 .chosen {
     width: 300px;
 }
+
+.photoListe {
+    height: 50px;
+}

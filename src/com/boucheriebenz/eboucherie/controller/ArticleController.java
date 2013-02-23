@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.boucheriebenz.eboucherie.model.Article;
-import com.boucheriebenz.eboucherie.service.TarifService;
 import com.boucheriebenz.eboucherie.service.ArticleService;
 import com.boucheriebenz.eboucherie.service.PhotoService;
+import com.boucheriebenz.eboucherie.service.TarifService;
 
 
 
@@ -66,7 +65,7 @@ public class ArticleController {
     }
 
     private void generateModel(Model model) throws Exception {
-        model.addAttribute("articles", articleService.getArticles());
+        model.addAttribute("articles", articleService.getArticlesAll());
         model.addAttribute("photos", photoService.getPhotos());
         model.addAttribute("tarifs", tarifService.getTarifs());
         if (!model.containsAttribute("article")) {

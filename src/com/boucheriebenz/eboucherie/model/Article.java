@@ -1,14 +1,23 @@
 package com.boucheriebenz.eboucherie.model;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Article {
 
     private Integer id;
     private String libelle;
     private String type;
     private String race;
-    private Tarif tarif;
+    private String description;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date debut;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date fin;
+    private boolean enLigne;
     private ArticlePhoto articlePhoto;
-    
+
     public Article() {
         super();
     }
@@ -45,34 +54,45 @@ public class Article {
         this.race = race;
     }
 
-    public Tarif getTarif() {
-        return tarif;
+
+    public String getDescription() {
+        return description;
     }
 
-    public void setTarif(Tarif tarif) {
-        this.tarif = tarif;
+    public Date getDebut() {
+        return debut;
     }
 
-	public ArticlePhoto getArticlePhoto() {
-		return articlePhoto;
-	}
-
-	public void setArticlePhoto(ArticlePhoto articlePhoto) {
-		this.articlePhoto = articlePhoto;
-	}
-	@Override
-    public int hashCode() {
-        return this.getLibelle().hashCode();
+    public Date getFin() {
+        return fin;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        Article ar = new Article();
-        if (obj instanceof Article) {
-            ar = (Article) obj;
-        }
-
-        return (ar.getLibelle().equals(this.getLibelle()));
+    public boolean isEnLigne() {
+        return enLigne;
     }
-    
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDebut(Date debut) {
+        this.debut = debut;
+    }
+
+    public void setFin(Date fin) {
+        this.fin = fin;
+    }
+
+    public void setEnLigne(boolean enLigne) {
+        this.enLigne = enLigne;
+    }
+
+    public ArticlePhoto getArticlePhoto() {
+        return articlePhoto;
+    }
+
+    public void setArticlePhoto(ArticlePhoto articlePhoto) {
+        this.articlePhoto = articlePhoto;
+    }
+
 }

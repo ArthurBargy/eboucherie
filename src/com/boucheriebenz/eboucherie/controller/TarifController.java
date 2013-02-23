@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.boucheriebenz.eboucherie.model.Tarif;
+import com.boucheriebenz.eboucherie.service.ArticleService;
+import com.boucheriebenz.eboucherie.service.PreparationService;
+import com.boucheriebenz.eboucherie.service.TVAService;
 import com.boucheriebenz.eboucherie.service.TarifService;
 
 @Controller
@@ -22,7 +24,13 @@ public class TarifController {
 	private static Logger logger = Logger.getLogger(TarifController.class);
     @Resource
     private TarifService tarifService;
-    
+    @Resource
+    private ArticleService articleService;
+    @Resource
+    private PreparationService preparationService;
+    @Resource
+    private TVAService tvaService;
+
 
     @RequestMapping
     public String defaultMapping(Model model) throws Exception {
@@ -59,7 +67,10 @@ public class TarifController {
     }
 
     private void generateModel(Model model) throws Exception {
-        model.addAttribute("tarifs", tarifService.getTarifs());          
+        model.addAttribute("tarifs", tarifService.getTarifs());
+        model.addAttribute("articles", articleService.getArticlesAll());
+        model.addAttribute("preparations", preparationService.getPreparations());
+        model.addAttribute("tvas", tvaService.getTvas());
         if (!model.containsAttribute("tarif")) {
             model.addAttribute("tarif", new Tarif());
         }
