@@ -12,7 +12,8 @@
     </head>
     <body>
         <h2>Photos</h2>
-        <a href="accueil">Retour à l'Accueil</a>
+        <a href="accueil">Retour &agrave; l'Accueil</a>
+        <hr>
         <h3>Uploader une photo</h3>
         <form:form method="POST" commandName="fichierPhoto" enctype="multipart/form-data">
             <form:hidden path="id"/>
@@ -42,6 +43,7 @@
                     <tr>
                         <th>Libell&eacute;</th>
                         <th>Lien</th>
+                        <th>Photo</th>
                         <th>Supprimer</th>
                     </tr>
                 </thead>
@@ -49,6 +51,7 @@
                     <tr>
                         <td>${photo.libelle}</td>
                         <td>${photo.lien}</td>
+                        <td><img alt="${photo.libelle}" src="${photo.lien}" class="photoListe"></td>
                         <td>
                             <button name="delete" value="${photo.id}"
                                     onclick="return window.confirm('Supprimer photo ?');">Supprimer</button>

@@ -46,7 +46,7 @@
 			<tr>
 				<td></td>
 				<td>14:30 -</td>
-				<td>12:30</td>
+				<td>17:00</td>
 			</tr>
 		</table>
 		</br> <a href="#"><img src="images/logo_facebook.png" width="25"

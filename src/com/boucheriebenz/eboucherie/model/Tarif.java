@@ -1,12 +1,31 @@
 package com.boucheriebenz.eboucherie.model;
 
-public class Tarif {
+import java.util.Date;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
+public class Tarif {
     private Integer id;
-    private Double tarif1;
-    private Double tarif2;
-    private Double tarif3;
-    private Double tarif4;
+    private Article article;
+    private Preparation preparation;
+    private TVA tva;
+    @NotEmpty
+    private String type;
+    @NotNull
+    @Min(0)
+    private Integer groupe;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date debut;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date fin;
+    @NotNull
+    private Double minimum;
+    @NotNull
+    private Double maximum;
 
     public Tarif() {
         super();
@@ -20,36 +39,75 @@ public class Tarif {
         this.id = id;
     }
 
-    public Double getTarif1() {
-        return tarif1;
+    public Article getArticle() {
+        return article;
     }
 
-    public void setTarif1(Double tarif1) {
-        this.tarif1 = tarif1;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
-    public Double getTarif2() {
-        return tarif2;
+    public Preparation getPreparation() {
+        return preparation;
     }
 
-    public void setTarif2(Double tarif2) {
-        this.tarif2 = tarif2;
+    public void setPreparation(Preparation preparation) {
+        this.preparation = preparation;
     }
 
-    public Double getTarif3() {
-        return tarif3;
+    public TVA getTva() {
+        return tva;
     }
 
-    public void setTarif3(Double tarif3) {
-        this.tarif3 = tarif3;
+    public void setTva(TVA tva) {
+        this.tva = tva;
     }
 
-    public Double getTarif4() {
-        return tarif4;
+    public String getType() {
+        return type;
     }
 
-    public void setTarif4(Double tarif4) {
-        this.tarif4 = tarif4;
+    public void setType(String type) {
+        this.type = type;
     }
 
+    public Integer getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(Integer groupe) {
+        this.groupe = groupe;
+    }
+
+    public Date getDebut() {
+        return debut;
+    }
+
+    public void setDebut(Date debut) {
+        this.debut = debut;
+    }
+
+    public Date getFin() {
+        return fin;
+    }
+
+    public void setFin(Date fin) {
+        this.fin = fin;
+    }
+
+    public Double getMinimum() {
+        return minimum;
+    }
+
+    public void setMinimum(Double minimum) {
+        this.minimum = minimum;
+    }
+
+    public Double getMaximum() {
+        return maximum;
+    }
+
+    public void setMaximum(Double maximum) {
+        this.maximum = maximum;
+    }
 }

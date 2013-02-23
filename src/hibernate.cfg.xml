@@ -4,10 +4,10 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost/eBoucherie</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost/eboucherie</property>
   <property name="hibernate.connection.username">root</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-  <property name="hibernate.connection.password"></property>
+  <property name="hibernate.connection.password">root</property>
   <mapping class="com.boucheriebenz.eboucherie.recherche.model.Article" resource="com/boucheriebenz/eboucherie/recherche/model/Article.hbm.xml"/>
   <mapping class="com.boucheriebenz.eboucherie.recherche.model.Client" resource="com/boucheriebenz/eboucherie/recherche/model/Client.hbm.xml"/>
   <mapping class="com.boucheriebenz.eboucherie.recherche.model.Tarif" resource="com/boucheriebenz/eboucherie/recherche/model/Tarif.hbm.xml"/>

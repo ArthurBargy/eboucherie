@@ -1,6 +1,7 @@
 package com.boucheriebenz.eboucherie.service;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +15,6 @@ import com.boucheriebenz.eboucherie.jdbc.JdbcConnector;
 import com.boucheriebenz.eboucherie.model.Article;
 import com.boucheriebenz.eboucherie.model.ArticlePhoto;
 import com.boucheriebenz.eboucherie.model.Photo;
-import com.boucheriebenz.eboucherie.model.Tarif;
 
 
 @Service
@@ -28,19 +28,31 @@ public class ArticleService {
         }
     }
 	
-	  private void insert(Article article) throws Exception {
+	 private void insert(Article article) throws Exception {
 	        Connection connection = JdbcConnector.getConnection();
 	        connection.setAutoCommit(false);
+	        
+	        Date debut = null ;
+	        Date fin = null ;
 
 	        // Ins�rer un article
-	        String sql = "INSERT INTO article(libelle, type, race,tarif) " +
-	                "VALUES(?,?,?,?)";
+	        String sql = "INSERT INTO article(libelle, type, race,description, date_debut, date_fin, en_ligne) " +
+	                "VALUES(?,?,?,?,?,?,?)";
 	        PreparedStatement ps = connection.prepareStatement(sql,
 	                Statement.RETURN_GENERATED_KEYS);
 	        ps.setString(1, article.getLibelle());
 	        ps.setString(2, article.getType());
 	        ps.setString(3, article.getRace());
-	        ps.setInt(4, article.getTarif().getId());
+	        ps.setString(4, article.getDescription()) ;
+	        if (article.getDebut() != null){
+	        	debut = new Date(article.getDebut().getTime()) ;
+	        }
+	        ps.setDate(5, debut);
+	        if (article.getFin() != null){
+	        	fin = new Date(article.getFin().getTime()) ;
+	        }
+	        ps.setDate(6, fin) ;
+	        ps.setBoolean(7, article.getEnLigne()) ;
 	        ps.execute();
 
 	        // R�cup�rer l'id de l'article cr�e
@@ -68,15 +80,28 @@ public class ArticleService {
 	  private void update(Article article) throws Exception {
 	        Connection connection = JdbcConnector.getConnection();
 	        connection.setAutoCommit(false);
+	        
+	        Date debut = null ;
+	        Date fin = null ;
 
 	        // Actualiser article
-	        String sql = "UPDATE article SET libelle=?,type=?,race=?,tarif=?" +
+	        String sql = "UPDATE article SET libelle=?,type=?,race=?,description=?,date_debut=?,date_fin=?,en_ligne=?" +
 	                "WHERE id_article=?";
 	        PreparedStatement ps = connection.prepareStatement(sql);
 	        ps.setString(1, article.getLibelle());
 	        ps.setString(2, article.getType());
 	        ps.setString(3, article.getRace());
-	        ps.setInt(4, article.getTarif().getId());
+	        ps.setString(4, article.getDescription()) ;
+	        if (article.getDebut() != null){
+	        	debut = new Date(article.getDebut().getTime()) ;
+	        }
+	        ps.setDate(5, debut);
+	        if (article.getFin() != null){
+	        	fin = new Date(article.getFin().getTime()) ;
+	        }
+	        ps.setDate(6, fin) ;
+	        ps.setBoolean(7, article.getEnLigne()) ;
+	        ps.setInt(8, article.getId()) ;
 	        ps.execute();
 
 	        // Actualiser le lien vers la photo
@@ -91,26 +116,6 @@ public class ArticleService {
 	        JdbcConnector.closeConnection();
 	    }
 	  
-//	  public List<Article> getArticlesByLibelle(String libelle) throws Exception {
-//		  Connection connection = JdbcConnector.getConnection();
-//		  String sql = "SELECT * from Article where libelle like '%"+libelle+"%'";
-//		  PreparedStatement ps = connection.prepareStatement(sql) ;
-//		  ResultSet rs = ps.executeQuery() ;
-//		  
-//		  List<Article> articles = new ArrayList<Article>();
-//	        while (rs.next()) {
-//	            Article article = new Article();
-//	            article.setId(rs.getInt("id_article")) ;
-//	            article.setLibelle(rs.getString("libelle")) ;
-//	            article.setType(rs.getString("type")) ;
-//	            article.setRace(rs.getString("race")) ;
-//	            articles.add(article) ;
-//	        }
-//	        
-//	        rs.close();
-//	        JdbcConnector.closeConnection();
-//	        return articles;
-//	  }
 
 	  public List<Article> getArticles() throws Exception {
 	        Connection connection = JdbcConnector.getConnection();
@@ -118,7 +123,6 @@ public class ArticleService {
 	                + "FROM article a "
 	                + "LEFT JOIN article_photo aa ON aa.article=a.id_article "
 	                + "LEFT JOIN photo ph ON aa.photo=ph.id_photo "
-	                + "RIGHT JOIN tarif t ON t.id_tarif=a.tarif "
 	                + "WHERE a.id_article IS NOT NULL "
 	                + "ORDER BY a.id_article";
 	        PreparedStatement ps = connection.prepareStatement(sql);
@@ -127,7 +131,6 @@ public class ArticleService {
 	        List<Article> articles = new ArrayList<Article>();
 	        while (rs.next()) {
 	            Article article = new Article();
-	            Tarif tarif = new Tarif();
 	            ArticlePhoto aa = new ArticlePhoto();
 	            Photo photo = new Photo();
 
@@ -135,18 +138,15 @@ public class ArticleService {
 	            photo.setLien(rs.getString("lien"));
 	            aa.setPhoto(photo);
 
-	            tarif.setId(rs.getInt("id_tarif"));
-	            tarif.setTarif1(rs.getDouble("t.tarif1"));
-	            tarif.setTarif2(rs.getDouble("t.tarif2"));
-	            tarif.setTarif3(rs.getDouble("t.tarif3"));
-	            tarif.setTarif4(rs.getDouble("t.tarif4"));
-
 	            article.setId(rs.getInt("id_article"));
 	            article.setLibelle(rs.getString("a.libelle"));
 	            article.setType(rs.getString("a.type"));
 	            article.setRace(rs.getString("a.race"));
-	            article.setTarif(tarif);
+	            article.setDescription(rs.getString("a.description")) ;
+	            article.setDebut(rs.getDate("a.date_debut")) ;
+	            article.setFin(rs.getDate("a.date_fin")) ;
 	            article.setArticlePhoto(aa);
+	            article.setEnLigne(rs.getBoolean("en_ligne")) ;
 	            articles.add(article);
 	        }
 
@@ -154,6 +154,8 @@ public class ArticleService {
 	        JdbcConnector.closeConnection();
 	        return articles;
 	    }
+	  
+	 
     
     public void delete(Integer id) throws Exception {
         Connection connection = JdbcConnector.getConnection();
@@ -187,20 +189,21 @@ public class ArticleService {
         rs.next();
 
         Article article = new Article();
-        Tarif tarif = new Tarif();
         ArticlePhoto aa = new ArticlePhoto();
         Photo photo = new Photo();
         
         photo.setId(rs.getInt("photo"));
         aa.setPhoto(photo);
 
-        tarif.setId(rs.getInt("tarif"));
-
         article.setId(rs.getInt("id_article"));
-        article.setLibelle(rs.getString("libelle"));
-        article.setType(rs.getString("type"));
-        article.setRace(rs.getString("race"));
-        article.setTarif(tarif);
+        article.setLibelle(rs.getString("a.libelle"));
+        article.setType(rs.getString("a.type"));
+        article.setRace(rs.getString("a.race"));
+        article.setDescription(rs.getString("a.description")) ;
+        article.setDebut(rs.getDate("a.date_debut")) ;
+        article.setFin(rs.getDate("a.date_fin")) ;
+        article.setArticlePhoto(aa);
+        article.setEnLigne(rs.getBoolean("en_ligne")) ;
         article.setArticlePhoto(aa);
 
         rs.close();

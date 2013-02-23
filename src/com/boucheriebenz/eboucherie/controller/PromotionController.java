@@ -64,7 +64,7 @@ public class PromotionController {
     }
 
     private void generateModel(Model model) throws Exception {
-        model.addAttribute("promotions", promotionService.getPromotions());
+        model.addAttribute("promotions", promotionService.getPromotionsAll());
         model.addAttribute("photos", photoService.getPhotos());
         model.addAttribute("articles", articleService.getArticles());
         if (!model.containsAttribute("promotion")) {

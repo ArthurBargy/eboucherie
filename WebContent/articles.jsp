@@ -43,21 +43,22 @@
                     <td><form:input path="race" /></td>
                     <td><form:errors path="race" cssClass="error" /></td>
                 </tr>
-                <tr>                                     					
-					<td>Tarif :</td>       
-					<td>       			
-                            <form:select path="tarif.id" data-placeholder="Choisissez un tarif" class="chosen">
-                            <form:option value=""></form:option>
-                            <c:forEach items="${tarifs}" var="tarif">
-                                <form:option value="${tarif.id}">${tarif.tarif1}</form:option>
-                                <form:option value="${tarif.id}">${tarif.tarif2}</form:option>
-                                 <form:option value="${tarif.id}">${tarif.tarif3}</form:option>
-                                <form:option value="${tarif.id}">${tarif.tarif4}</form:option>
-                            </c:forEach>
-                        </form:select>   
-                    </td>          
-                    <td><form:errors path="tarif.id" cssClass="error" /></td>
+                <tr>
+                	<td>Description :</td>
+                	<td><form:input path="description" /></td>
+                	<td><form:errors path="description" cssClass="error" /></td>
                 </tr>
+				<tr>
+                    <td>Date d&eacute;but :</td>
+                    <td><form:input path="debut" readonly="true" cssClass="date" /></td>
+                    <td><form:errors path="debut" cssClass="error" /></td>
+                </tr>
+                <tr>
+                    <td>Date fin :</td>
+                    <td><form:input path="fin" readonly="true" cssClass="date" /></td>
+                    <td><form:errors path="fin" cssClass="error" /></td>
+                </tr>
+                <tr>
                 <tr>
                     <td>Photo :</td>
                     <td>
@@ -69,6 +70,11 @@
                         </form:select>
                     </td>
                     <td><form:errors path="articlePhoto" cssClass="error" /></td>
+                </tr>
+                <tr>
+                    <td>En Ligne :</td>
+                    <td><form:checkbox path="enLigne" /></td>
+                    <td><form:errors path="enLigne" cssClass="error" /></td>
                 </tr>
                 <tr>
                     <c:choose>
@@ -94,8 +100,11 @@
                         <th>libelle</th>
                         <th>Type</th>
                         <th>Race</th>
-                        <th>Tarif</th>
+                        <th>Description</th>
+                        <th>Date d&eacute;but</th>
+                        <th>Date fin</th>
                         <th>Photo</th>
+                        <th>En ligne</th>
                         <th>Modifier</th>
                         <th>Supprimer</th>
                     </tr>
@@ -105,8 +114,16 @@
                         <td>${article.libelle}</td>
                         <td>${article.type}</td>
                         <td>${article.race}</td>
-                        <td>${article.tarif.tarif1}</td>
+                        <td>${article.description}</td>
+                        <td>${article.debut}</td>
+                        <td>${article.fin}</td>
                         <td>${article.articlePhoto.photo.libelle}</td>
+                        <c:if test="${article.enLigne}">
+                        	<td>Oui</td>
+                        </c:if>
+                        <c:if test="${not(article.enLigne)}">
+                        	<td>Non</td>
+                        </c:if>
                         <td>
                             <button name="update" value="${article.id}">Modifier</button>
                         </td>
