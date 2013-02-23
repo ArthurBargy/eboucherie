@@ -1,7 +1,10 @@
 package com.boucheriebenz.eboucherie.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Preparation {
     private Integer id;
+    @NotEmpty
     private String libelle;
 
     public Integer getId() {
