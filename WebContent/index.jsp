@@ -32,6 +32,7 @@
         <a href="photos">G&eacute;rer Photos</a> -
         <a href="articles">G&eacute;rer Articles</a> -
         <a href="tarifs">G&eacute;rer Tarifs</a> -
+        <a href="preparations">G&eacute;rer Preparations</a> -
         <a href="tvas">G&eacute;rer TVAs</a>
         <br><br>
 		<div id="slides" >
