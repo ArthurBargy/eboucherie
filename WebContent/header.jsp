@@ -42,7 +42,7 @@
 					</ul>
 				</li>
 				<li><a href="#">Les recettes</a></li>
-				<li><a href="#">Accès</a></li>
+				<li><a href="acces.jsp">Accès</a></li>
 				<li><a href="contact.jsp">Contact</a></li>
 			</ul>
 		</div>
