@@ -1,8 +1,14 @@
 package com.boucheriebenz.eboucherie.model;
 
-public class TVA {
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+public class Tva {
     private Integer id;
+    @NotNull
     private Double pourcentage;
+    @NotEmpty
     private String libelle;
 
     public Integer getId() {

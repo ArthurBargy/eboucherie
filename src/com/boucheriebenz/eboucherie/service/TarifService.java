@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import com.boucheriebenz.eboucherie.jdbc.JdbcConnector;
 import com.boucheriebenz.eboucherie.model.Article;
 import com.boucheriebenz.eboucherie.model.Preparation;
-import com.boucheriebenz.eboucherie.model.TVA;
+import com.boucheriebenz.eboucherie.model.Tva;
 import com.boucheriebenz.eboucherie.model.Tarif;
 
 @Service
@@ -145,7 +145,7 @@ public class TarifService {
         Tarif tarif = new Tarif();
         Article article = new Article();
         Preparation preparation = new Preparation();
-        TVA tva = new TVA();
+        Tva tva = new Tva();
 
         article.setId(rs.getInt("a.id_article"));
         article.setLibelle(rs.getString("a.libelle"));

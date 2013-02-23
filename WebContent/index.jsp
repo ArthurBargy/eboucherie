@@ -28,10 +28,12 @@
 	<% response.sendRedirect("accueil"); %>
 	</c:if>
 	<div class="contenuCentral">
-		
-		<a href="promotions">G&eacute;rer Promotions</a> - <a href="photos">G&eacute;rer
-			Photos</a> - <a href="articles">G&eacute;rer Articles</a> - <a
-			href="tarifs">G&eacute;rer Tarifs</a>  </br></br>
+        <a href="promotions">G&eacute;rer Promotions</a> -
+        <a href="photos">G&eacute;rer Photos</a> -
+        <a href="articles">G&eacute;rer Articles</a> -
+        <a href="tarifs">G&eacute;rer Tarifs</a> -
+        <a href="tvas">G&eacute;rer TVAs</a>
+        <br><br>
 		<div id="slides" >
 			<div class="slides_container">
 				<c:forEach items="${promotions}" var="promotion">

@@ -12,22 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.boucheriebenz.eboucherie.model.Tarif;
-import com.boucheriebenz.eboucherie.service.ArticleService;
-import com.boucheriebenz.eboucherie.service.PreparationService;
+import com.boucheriebenz.eboucherie.model.Tva;
 import com.boucheriebenz.eboucherie.service.TvaService;
-import com.boucheriebenz.eboucherie.service.TarifService;
 
 @Controller
-@RequestMapping("/tarifs")
-public class TarifController {
-	private static Logger logger = Logger.getLogger(TarifController.class);
-    @Resource
-    private TarifService tarifService;
-    @Resource
-    private ArticleService articleService;
-    @Resource
-    private PreparationService preparationService;
+@RequestMapping("/tvas")
+public class TvaController {
+	private static Logger logger = Logger.getLogger(TvaController.class);
     @Resource
     private TvaService tvaService;
 
@@ -35,44 +26,41 @@ public class TarifController {
     @RequestMapping
     public String defaultMapping(Model model) throws Exception {
         generateModel(model);
-        return "tarifs";
+        return "tvas";
     }
 
     @RequestMapping(params = "save")
-    public String create(@Valid Tarif tarif,
-            BindingResult result, Model model) throws Exception {
+    public String create(@Valid Tva tva, BindingResult result, Model model)
+            throws Exception {
         if (!result.hasErrors()) {
-            model.addAttribute("tarif", new Tarif());
-            tarifService.save(tarif);
+            model.addAttribute("tva", new Tva());
+            tvaService.save(tva);
         }
         generateModel(model);
-        return "tarifs";
+        return "tvas";
     }
 
     @RequestMapping(params = "update")
     public String update(@RequestParam Integer update, Model model)
             throws Exception {
-        Tarif tarif = tarifService.getById(update);
-        model.addAttribute("tarif", tarif);
+        Tva tva = tvaService.getById(update);
+        model.addAttribute("tva", tva);
         generateModel(model);
-        return "tarifs";
+        return "tvas";
     }
 
     @RequestMapping(params = "delete")
     public String delete(@RequestParam Integer delete, Model model)
             throws Exception {
-        tarifService.delete(delete);
+        tvaService.delete(delete);
         generateModel(model);
-        return "tarifs";
+        return "tvas";
     }
 
     private void generateModel(Model model) throws Exception {
-        model.addAttribute("tarifs", tarifService.getTarifs());
-        model.addAttribute("articles", articleService.getArticlesAll());
-        model.addAttribute("preparations", preparationService.getPreparations());
         model.addAttribute("tvas", tvaService.getTVAs());
-        if (!model.containsAttribute("tarif")) {
-            model.addAttribute("tarif", new Tarif());
+        if (!model.containsAttribute("tva")) {
+            model.addAttribute("tva", new Tva());
         }
     }
 

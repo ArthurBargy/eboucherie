@@ -12,7 +12,7 @@ public class Tarif {
     private Integer id;
     private Article article;
     private Preparation preparation;
-    private TVA tva;
+    private Tva tva;
     @NotEmpty
     private String type;
     @NotNull
@@ -55,11 +55,11 @@ public class Tarif {
         this.preparation = preparation;
     }
 
-    public TVA getTva() {
+    public Tva getTva() {
         return tva;
     }
 
-    public void setTva(TVA tva) {
+    public void setTva(Tva tva) {
         this.tva = tva;
     }
 
