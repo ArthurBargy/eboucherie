@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,8 @@ import org.springframework.stereotype.Service;
 import com.boucheriebenz.eboucherie.jdbc.JdbcConnector;
 import com.boucheriebenz.eboucherie.model.Article;
 import com.boucheriebenz.eboucherie.model.Preparation;
-import com.boucheriebenz.eboucherie.model.Tva;
 import com.boucheriebenz.eboucherie.model.Tarif;
+import com.boucheriebenz.eboucherie.model.Tva;
 
 @Service
 public class TarifService {
@@ -93,10 +94,21 @@ public class TarifService {
         if (tarif.getFin() != null) {
             fin = new Date(tarif.getFin().getTime());
         }
-
-        ps.setInt(1, tarif.getArticle().getId());
-        ps.setInt(2, tarif.getPreparation().getId());
-        ps.setInt(3, tarif.getTva().getId());
+        if (tarif.getArticle().getId() != null) {
+            ps.setInt(1, tarif.getArticle().getId());
+        } else {
+            ps.setNull(1, Types.INTEGER);
+        }
+        if (tarif.getPreparation().getId() != null) {
+            ps.setInt(2, tarif.getPreparation().getId());
+        } else {
+            ps.setNull(2, Types.INTEGER);
+        }
+        if (tarif.getTva().getId() != null) {
+            ps.setInt(3, tarif.getTva().getId());
+        } else {
+            ps.setNull(3, Types.INTEGER);
+        }
         ps.setString(4, tarif.getType());
         ps.setInt(5, tarif.getGroupe());
         ps.setDate(6, debut);
@@ -113,7 +125,7 @@ public class TarifService {
         String sql = "SELECT * FROM tarif t "
                 + "LEFT JOIN preparation p ON t.preparation=p.id_preparation "
                 + "LEFT JOIN tva ON t.tva=tva.id_tva "
-                + "RIGHT JOIN article a ON a.id_article=t.article "
+                + "LEFT JOIN article a ON a.id_article=t.article "
                 + "WHERE t.id_tarif IS NOT NULL "
                 + "ORDER BY t.id_tarif";
         List<Tarif> tarifs = new ArrayList<Tarif>();
