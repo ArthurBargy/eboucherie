@@ -1,8 +1,22 @@
 $(document).ready(function() {
+    // Config listes déroulantes
     $(".chosen").chosen({
         no_results_text: "Pas de résultats pour : ",
         allow_single_deselect: true
     });
+    // Événement de changement des listes marquées comme exclusives
+    $(".exclusive").chosen().change(function() {
+        var id = $(this).attr("id");
+        // Désélectionne toutes les autres listes avec la classe ".exclusive"
+        $(".exclusive").each(function() {
+            if (id != $(this).attr("id")) {
+                $(this).val("");
+                $(this).trigger("liszt:updated");
+            }
+        });
+    });
+
+    // Config calendriers
     $("#debut").datepicker({
         changeMonth: true,
         changeYear: true,

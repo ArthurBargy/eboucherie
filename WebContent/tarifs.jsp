@@ -36,7 +36,7 @@
                 <tr>
                     <td>Article :</td>
                     <td>
-                        <form:select path="article.id" data-placeholder="Choisissez un article" cssClass="chosen">
+                        <form:select path="article.id" data-placeholder="Choisissez un article" cssClass="chosen exclusive">
                             <form:option value=""></form:option>
                             <c:forEach items="${articles}" var="article">
                                 <form:option value="${article.id}">${article.libelle}</form:option>
@@ -48,7 +48,7 @@
                 <tr>
                     <td>Preparation :</td>
                     <td>
-                        <form:select path="preparation.id" data-placeholder="Choisissez une preparation" cssClass="chosen">
+                        <form:select path="preparation.id" data-placeholder="Choisissez une preparation" cssClass="chosen exclusive">
                             <form:option value=""></form:option>
                             <c:forEach items="${preparations}" var="preparation">
                                 <form:option value="${preparation.id}">${preparation.libelle}</form:option>
