@@ -13,10 +13,10 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.boucheriebenz.eboucherie.jdbc.JdbcConnector;
-import com.boucheriebenz.eboucherie.model.Article;
 import com.boucheriebenz.eboucherie.model.Photo;
 import com.boucheriebenz.eboucherie.model.Promotion;
 import com.boucheriebenz.eboucherie.model.PromotionPhoto;
+import com.boucheriebenz.eboucherie.model.Tarif;
 
 @Service
 public class PromotionService {
@@ -41,7 +41,7 @@ public class PromotionService {
             connection.setAutoCommit(false);
 
             // Insérer la promotion
-            String sql = "INSERT INTO promotion(titre,texte,article," +
+            String sql = "INSERT INTO promotion(titre,texte,tarif," +
                     "date_debut,date_fin,en_ligne) "
                     + "VALUES(?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql,
@@ -87,7 +87,7 @@ public class PromotionService {
             connection.setAutoCommit(false);
 
             // Actualiser la promotion
-            String sql = "UPDATE promotion SET titre=?,texte=?,article=?," +
+            String sql = "UPDATE promotion SET titre=?,texte=?,tarif=?," +
                     "date_debut=?,date_fin=?,en_ligne=? WHERE id_promotion=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             setParams(promotion, ps);
@@ -144,7 +144,7 @@ public class PromotionService {
 
         ps.setString(1, promotion.getTitre());
         ps.setString(2, promotion.getTexte());
-        ps.setInt(3, promotion.getArticle().getId());
+        ps.setInt(3, promotion.getTarif().getId());
         ps.setDate(4, debut);
         ps.setDate(5, fin);
         ps.setBoolean(6, promotion.isEnLigne());
@@ -162,7 +162,7 @@ public class PromotionService {
                 + "FROM promotion p "
                 + "LEFT JOIN promotion_photo pp ON pp.promotion=p.id_promotion "
                 + "LEFT JOIN photo ph ON pp.photo=ph.id_photo "
-                + "RIGHT JOIN article a ON a.id_article=p.article "
+                + "RIGHT JOIN tarif t ON t.id_tarif=p.tarif "
                 + "WHERE p.id_promotion IS NOT NULL AND p.en_ligne=true "
                 + "AND ((p.date_debut IS NULL AND p.date_fin IS NULL) OR "
                 + "(SYSDATE() >= p.date_debut "
@@ -179,7 +179,7 @@ public class PromotionService {
                 + "FROM promotion p "
                 + "LEFT JOIN promotion_photo pp ON pp.promotion=p.id_promotion "
                 + "LEFT JOIN photo ph ON pp.photo=ph.id_photo "
-                + "RIGHT JOIN article a ON a.id_article=p.article "
+                + "RIGHT JOIN tarif t ON t.id_tarif=p.tarif "
                 + "WHERE p.id_promotion IS NOT NULL "
                 + "ORDER BY p.id_promotion";
         return getPromotions(sql);
@@ -213,22 +213,22 @@ public class PromotionService {
      */
     private Promotion mapPromotion(ResultSet rs) throws SQLException {
         Promotion promotion = new Promotion();
-        Article article = new Article();
+        Tarif tarif = new Tarif();
         PromotionPhoto pp = new PromotionPhoto();
         Photo photo = new Photo();
 
+        photo.setId(rs.getInt("ph.id_photo"));
         photo.setLibelle(rs.getString("ph.libelle"));
         photo.setLien(rs.getString("ph.lien"));
-        photo.setId(rs.getInt("pp.photo"));
         pp.setPhoto(photo);
 
-        article.setId(rs.getInt("p.article"));
-        article.setLibelle(rs.getString("a.libelle"));
+        tarif.setId(rs.getInt("t.id_tarif"));
+        tarif.setType(rs.getString("t.type_tarif"));
 
         promotion.setId(rs.getInt("p.id_promotion"));
         promotion.setTitre(rs.getString("p.titre"));
         promotion.setTexte(rs.getString("p.texte"));
-        promotion.setArticle(article);
+        promotion.setTarif(tarif);
         promotion.setPromotionPhoto(pp);
         promotion.setDebut(rs.getDate("p.date_debut"));
         promotion.setFin(rs.getDate("p.date_fin"));
@@ -266,7 +266,7 @@ public class PromotionService {
         String sql = "SELECT * FROM promotion p "
                 + "LEFT JOIN promotion_photo pp ON pp.promotion=p.id_promotion "
                 + "LEFT JOIN photo ph ON pp.photo=ph.id_photo "
-                + "RIGHT JOIN article a ON a.id_article=p.article "
+                + "RIGHT JOIN tarif t ON t.id_tarif=p.tarif "
                 + "WHERE p.id_promotion=?";
         Promotion promotion = new Promotion();
         ResultSet rs = null;

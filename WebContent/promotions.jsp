@@ -44,16 +44,16 @@
                     <td><form:errors path="texte" cssClass="error" /></td>
                 </tr>
                 <tr>
-                    <td>Article :</td>
+                    <td>Tarif :</td>
                     <td>
-                        <form:select path="article.id" data-placeholder="Choisissez un article" cssClass="chosen">
+                        <form:select path="tarif.id" data-placeholder="Choisissez un tarif" cssClass="chosen">
                             <form:option value=""></form:option>
-                            <c:forEach items="${articles}" var="article">
-                                <form:option value="${article.id}">${article.libelle}</form:option>
+                            <c:forEach items="${tarifs}" var="tarif">
+                                <form:option value="${tarif.id}">${tarif.type}</form:option>
                             </c:forEach>
                         </form:select>
                     </td>
-                    <td><form:errors path="article.id" cssClass="error" /></td>
+                    <td><form:errors path="tarif.id" cssClass="error" /></td>
                 </tr>
                 <tr>
                     <td>Photo :</td>
@@ -105,7 +105,7 @@
                     <tr>
                         <th>Titre</th>
                         <th>Texte</th>
-                        <th>Article</th>
+                        <th>Type Tarif</th>
                         <th>Photo</th>
                         <th>D&eacute;but</th>
                         <th>Fin</th>
@@ -118,7 +118,7 @@
                     <tr>
                         <td>${promotion.titre}</td>
                         <td>${promotion.texte}</td>
-                        <td>${promotion.article.libelle}</td>
+                        <td>${promotion.tarif.type}</td>
                         <td>${promotion.promotionPhoto.photo.libelle}</td>
                         <td><fmt:formatDate value="${promotion.debut}" pattern="dd/MM/yyyy" /></td>
                         <td><fmt:formatDate value="${promotion.fin}" pattern="dd/MM/yyyy" /></td>

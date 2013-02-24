@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.boucheriebenz.eboucherie.model.Promotion;
-import com.boucheriebenz.eboucherie.service.ArticleService;
 import com.boucheriebenz.eboucherie.service.PhotoService;
 import com.boucheriebenz.eboucherie.service.PromotionService;
+import com.boucheriebenz.eboucherie.service.TarifService;
 
 @Controller
 @RequestMapping("/promotions")
@@ -27,7 +27,7 @@ public class PromotionController {
     @Resource
     private PhotoService photoService;
     @Resource
-    private ArticleService articleService;
+    private TarifService tarifService;
 
     @RequestMapping
     public String defaultMapping(Model model) throws Exception {
@@ -66,7 +66,7 @@ public class PromotionController {
     private void generateModel(Model model) throws Exception {
         model.addAttribute("promotions", promotionService.getPromotionsAll());
         model.addAttribute("photos", photoService.getPhotos());
-        model.addAttribute("articles", articleService.getArticlesAll());
+        model.addAttribute("tarifs", tarifService.getTarifs());
         if (!model.containsAttribute("promotion")) {
             model.addAttribute("promotion", new Promotion());
         }

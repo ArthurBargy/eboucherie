@@ -2,8 +2,6 @@ package com.boucheriebenz.eboucherie.model;
 
 import java.util.Date;
 
-import javax.validation.Valid;
-
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,8 +12,7 @@ public class Promotion {
     private String titre;
     @NotEmpty
     private String texte;
-    @Valid
-    private Article article;
+    private Tarif tarif;
     private PromotionPhoto promotionPhoto;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date debut;
@@ -51,12 +48,12 @@ public class Promotion {
         this.texte = texte;
     }
 
-    public Article getArticle() {
-        return article;
+    public Tarif getTarif() {
+        return tarif;
     }
 
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setTarif(Tarif tarif) {
+        this.tarif = tarif;
     }
 
     public PromotionPhoto getPromotionPhoto() {
